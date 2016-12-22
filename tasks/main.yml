@@ -1,0 +1,34 @@
+---
+# tasks file for kostyrevaa.openswan
+
+- name: install package
+  package:
+    name: openswan
+    state: present
+
+- name: render template /etc/ipsec.conf
+  template:
+    src: ipsec.conf.j2
+    dest: /etc/ipsec.conf
+    owner: root
+    group: root
+    mode: 0600
+  tags: config
+
+- name: render /etc/ipsec.d/{{ item.key }}.conf
+  template:
+    src: conn.j2
+    dest: "/etc/ipsec.d/{{ item.key }}.conf"
+    owner: root
+    group: root
+    mode: 0600
+  with_dict: "{{ openswan_connections }}"
+  tags:
+    - config
+    - conn
+
+- name: enable and start ipsec service
+  service:
+    name: ipsec
+    state: started
+    enabled: yes

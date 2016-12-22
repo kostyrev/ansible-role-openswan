@@ -1,0 +1,7 @@
+---
+# defaults file for kostyrevaa.openswan
+openswan_config_options:
+   protostack: netkey
+   nat_traversal: 'yes'
+   virtual_private:
+   oe: 'off'

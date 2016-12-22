@@ -1,0 +1,16 @@
+version 2.0 # conforms to second version of ipsec.conf specification
+
+# basic configuration
+config setup
+	# Debug-logging controls:  "none" for (almost) none, "all" for lots.
+	# klipsdebug=none
+	# plutodebug="control parsing"
+	# For Red Hat Enterprise Linux and Fedora, leave protostack=netkey
+	{% for key, value in openswan_config_options.iteritems() %}
+	{{ key }}={{ value }}
+	{% endfor %}
+	# Enable this if you see "failed to find any available worker"
+	# nhelpers=0
+
+#You may put your configuration (.conf) file in the "/etc/ipsec.d/" and uncomment this.
+include /etc/ipsec.d/*.conf
