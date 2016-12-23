@@ -29,6 +29,19 @@
     - config
     - conn
 
+- name: render /etc/ipsec.d/{{ item.key }}.secrets
+  template:
+    src: secrets.j2
+    dest: "/etc/ipsec.d/{{ item.key }}.secrets"
+    owner: root
+    group: root
+    mode: 0600
+  with_dict: "{{ openswan_connections }}"
+  notify: restart ipsec service
+  tags:
+    - config
+    - secrets
+
 - name: enable and start ipsec service
   service:
     name: ipsec
