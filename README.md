@@ -1,6 +1,8 @@
 openswan
 =========
 
+[![Build Status](https://travis-ci.org/kostyrevaa/ansible-role-openswan.svg?branch=master)](https://travis-ci.org/kostyrevaa/ansible-role-openswan)
+
 This role installs and configures [openswan](https://www.openswan.org)
 
 Requirements
