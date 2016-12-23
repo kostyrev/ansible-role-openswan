@@ -1,17 +1,20 @@
-Role Name
+openswan
 =========
 
-A brief description of the role goes here.
+This role installs and configures [openswan](https://www.openswan.org)
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Name                                | Description                                |
+|-------------------------------------|--------------------------------------------|
+| openswan_config_options             | Hash config setup                          |
+| openswan_manage_service             | Notify ipsec service when templates change |
 
 Dependencies
 ------------
@@ -23,9 +26,27 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+- hosts: all
+  vars:
+    openswan_connections:
+      mdpu:
+        gateway_public_ip: 55.231.144.167
+        psk: '123321'
+        options:
+          - left: "{{ ansible_default_ipv4.address }}"
+          - leftsubnets: '10.45.0.0/16'
+          - leftnexthop: '%defaultroute'
+          - right: 'tncvpn.massdpu.com'
+          - rightsubnets: 10.199.131.0/24
+          - pfs: 'no'
+          - forceencaps: 'yes'
+          - authby: 'secret'
+          - auto: 'start'
+  roles:
+    - role: kostyrevaa.openswan
+```
+
 
 License
 -------
@@ -35,4 +56,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Aleksandr Kostyrev
