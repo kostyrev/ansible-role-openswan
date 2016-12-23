@@ -1,2 +1,7 @@
 ---
 # handlers file for kostyrevaa.openswan
+- name: restart ipsec service
+  service:
+    name: ipsec
+    state: restarted
+  when: openswan_manage_service

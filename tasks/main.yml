@@ -13,6 +13,7 @@
     owner: root
     group: root
     mode: 0600
+  notify: restart ipsec service
   tags: config
 
 - name: render /etc/ipsec.d/{{ item.key }}.conf
@@ -23,6 +24,7 @@
     group: root
     mode: 0600
   with_dict: "{{ openswan_connections }}"
+  notify: restart ipsec service
   tags:
     - config
     - conn
@@ -32,3 +34,4 @@
     name: ipsec
     state: started
     enabled: yes
+  when: openswan_manage_service
