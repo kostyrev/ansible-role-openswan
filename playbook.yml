@@ -1,4 +1,20 @@
 ---
 - hosts: all
+  vars:
+    azure_gateway_ip: 213.72.54.22
+    openswan_connections:
+      mdpu:
+        gateway_public_ip: "{{ azure_gateway_ip }}"
+        psk: '123321'
+        options:
+          - left: "{{ ansible_default_ipv4.address }}"
+          - leftsubnets: '10.45.0.0/16'
+          - leftnexthop: '%defaultroute'
+          - right: "{{ azure_gateway_ip }}"
+          - rightsubnets: 10.199.131.0/24
+          - pfs: 'no'
+          - forceencaps: 'yes'
+          - authby: 'secret'
+          - auto: 'start'
   roles:
     - role: kostyrevaa.openswan
