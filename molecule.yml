@@ -5,10 +5,9 @@ driver:
   name: docker
 docker:
   containers:
-    - name: kostyrevaa.openswan
-      image: ubuntu
-      image_version: latest
-      ansible_groups:
-        - group1
+    - name: openswan-centos
+      image: centos
+      image_version: 6.8
+      privileged: true
 verifier:
   name: testinfra
