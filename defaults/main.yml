@@ -1,6 +1,7 @@
 ---
 # defaults file for kostyrevaa.openswan
 openswan_manage_service: yes
+openswan_manage_secrets: yes
 openswan_config_options:
    protostack: netkey
    nat_traversal: 'yes'

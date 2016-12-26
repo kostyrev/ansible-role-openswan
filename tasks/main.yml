@@ -37,6 +37,7 @@
     group: root
     mode: '0600'
   with_dict: "{{ openswan_connections }}"
+  when: openswan_manage_secrets
   notify: restart ipsec service
   tags:
     - config
