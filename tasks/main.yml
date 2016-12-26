@@ -12,7 +12,7 @@
     dest: /etc/ipsec.conf
     owner: root
     group: root
-    mode: 0600
+    mode: '0600'
   notify: restart ipsec service
   tags: config
 
@@ -22,7 +22,7 @@
     dest: "/etc/ipsec.d/{{ item.key }}.conf"
     owner: root
     group: root
-    mode: 0600
+    mode: '0600'
   with_dict: "{{ openswan_connections }}"
   notify: restart ipsec service
   tags:
@@ -35,7 +35,7 @@
     dest: "/etc/ipsec.d/{{ item.key }}.secrets"
     owner: root
     group: root
-    mode: 0600
+    mode: '0600'
   with_dict: "{{ openswan_connections }}"
   notify: restart ipsec service
   tags:
