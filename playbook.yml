@@ -1,14 +1,16 @@
 ---
+
 - hosts: all
   vars:
     azure_gateway_ip: 213.72.54.22
-    openswan_manage_service: false
+    openswan_manage_service: no
+    openswan_manage_secrets: no
     openswan_connections:
       mdpu:
         gateway_public_ip: "{{ azure_gateway_ip }}"
         psk: '123321'
         options:
-          - left: "{{ ansible_all_ipv4_addresses | list | random }}"
+          - left: 172.17.0.2
           - leftsubnets: '10.45.0.0/16'
           - leftnexthop: '%defaultroute'
           - right: "{{ azure_gateway_ip }}"

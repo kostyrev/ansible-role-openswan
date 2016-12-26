@@ -1,4 +1,14 @@
 ---
+
+molecule:
+  test:
+    sequence:
+      - destroy
+      - syntax
+      - create
+      - converge
+      - idempotence
+
 dependency:
   name: galaxy
 driver:
@@ -8,6 +18,5 @@ docker:
     - name: openswan-centos
       image: centos
       image_version: 6.8
-      privileged: true
 verifier:
   name: testinfra
