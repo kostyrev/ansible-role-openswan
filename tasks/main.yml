@@ -45,7 +45,9 @@
     group: root
     mode: '0600'
   with_dict: "{{ openswan_connections }}"
-  when: openswan_manage_secrets
+  when:
+    - openswan_manage_secrets
+    - item.value.psk_string is defined
   notify: restart ipsec service
   tags:
     - config
