@@ -31,7 +31,7 @@
 
 - name: make sure /etc/ipsec.secrets includes other secrets
   copy:
-    content: "include ipsec.*.secrets\n"
+    content: "include ipsec.d/*.secrets\n"
     dest: /etc/ipsec.secrets
     owner: root
     group: root
