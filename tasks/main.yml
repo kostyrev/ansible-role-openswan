@@ -29,6 +29,14 @@
     - config
     - conn
 
+- name: make sure /etc/ipsec.secrets includes other secrets
+  copy:
+    content: "include ipsec.*.secrets\n"
+    dest: /etc/ipsec.secrets
+    owner: root
+    group: root
+    mode: '0600'
+
 - name: render /etc/ipsec.d/{{ item.key }}.secrets
   template:
     src: secrets.j2
