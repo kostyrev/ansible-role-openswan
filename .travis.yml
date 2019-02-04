@@ -11,7 +11,7 @@ before_install:
 - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-ce
 
 install:
-- pip install ansible==2.2.0.0
+- pip install ansible==2.6.8
 - pip install docker-py
 - pip install molecule
 
