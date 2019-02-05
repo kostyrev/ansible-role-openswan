@@ -7,7 +7,7 @@ config setup
 	# klipsdebug=none
 	# plutodebug="control parsing"
 	# For Red Hat Enterprise Linux and Fedora, leave protostack=netkey
-	{% for key, value in openswan_config_options.iteritems() %}
+	{% for key, value in openswan_config_options.items() %}
 	{{ key }}={{ value }}
 	{% endfor %}
 	# Enable this if you see "failed to find any available worker"
